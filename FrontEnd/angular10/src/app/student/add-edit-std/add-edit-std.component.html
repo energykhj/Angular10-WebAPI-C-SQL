@@ -1,0 +1,43 @@
+<div class="d-flex flex-row bd-highlight mb-3">
+    <div class="form-froup row px-2" style="width: 60%;">
+        <label class="col-sm-2 col-form-label">Student Name</label>
+
+        <!-- ngModel is used for two-way data binding -->
+        <!-- input text box updated automatically with teh text box and value-->
+        <div class="col-sm-10">
+            <input type="text" class="form-control" 
+            [(ngModel)]="StudentName" placeholder="Enter Student Name">
+        </div>
+        
+        <label class="col-sm-2 col-form-label">Program</label>
+        <div class="col-sm-10">
+            <select class="form-control" [(ngModel)]="Department">
+                <option>--Select--</option>
+                <option *ngFor="let depName of DepartmentsList">
+                    {{depName.DepartmentName}}
+                </option>
+            </select>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Date of Joining</label>
+        <div class="col-sm-10">
+            <input type="date" [(ngModel)]="DateOfJoining">
+        </div>
+    </div>
+
+    <div class="ml-3 db-highlight" style="width: 40%;">
+        <img [src]="PhotoFilePath" height="250px;" width="200px;">
+        <input type="file" (change)="uploadPhoto($event)" class="mt-2" />
+    </div>
+
+</div>
+
+<!--Add button will be visible when DepartmentId == 0-->
+<button (click)="addStudent()" *ngIf="std.StudentId==0" 
+    class="btn btn-primary">Add
+</button>
+
+<!--update button will be visible when DepartmentId != 0-->
+<button (click)="updateStudent()" *ngIf="std.StudentId!=0" 
+    class="btn btn-primary">Update
+</button>
